@@ -2,10 +2,11 @@
 
 rm -r build || true
 mkdir build/
-# rm -r main.dSYM/ || true
+
+cmd="g++ -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion"
 
 # debug
-g++ -ggdb -o build/main main.cpp
+$cmd -ggdb -o build/main main.cpp
 
 # release
-# g++ -O2 -DNDEBUG -o main main.cpp
+# $cmd -O2 -DNDEBUG -o main main.cpp
