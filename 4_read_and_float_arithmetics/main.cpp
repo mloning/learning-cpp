@@ -1,16 +1,22 @@
+#include <cmath>
 #include <iostream>
+#include <iterator>
 #include <set>
 
-double read_double() {
-  std::cout << "Enter a double value: ";
-  double x{};
-  std::cin >> x;
-  return x;
-};
+// use of anonymous namespace to limit the scope of the functions to this file;
+// similar to prefixing the functions with 'static'
+namespace {
 
-char read_operator() {
+auto read_double() -> double {
+  std::cout << "Enter a double value: ";
+  double num{};
+  std::cin >> num;
+  return num;
+}
+
+auto read_operator() -> char {
   std::set<char> operators = {'+', '-', '*', '/'};
-  char x{};
+  char operator_{};
   while (true) {
     std::cout << "Enter {";
     for (auto it = operators.begin(); it != operators.end(); ++it) {
@@ -20,35 +26,35 @@ char read_operator() {
       }
     }
     std::cout << "}: ";
-    std::cin >> x;
-    if (operators.count(x)) {
+    std::cin >> operator_;
+    if (operators.count(operator_) != 0U) {
       break;
-    } else {
-      std::cout << "Invalid operator. Please try again.\n";
     }
+    std::cout << "Invalid operator. Please try again.\n";
   }
-  return x;
-};
+  return operator_;
+}
 
-int main() {
-  double a = {read_double()};
-  double b = {read_double()};
-  char op = {read_operator()};
+auto main() -> int {
+  double const num_a = {read_double()};
+  double const num_b = {read_double()};
+  char const operator_ = {read_operator()};
 
-  double result;
-  if (op == '+')
-    result = a + b;
-  else if (op == '-')
-    result = a - b;
-  else if (op == '*')
-    result = a * b;
-  else if (op == '/')
-    result = a / b;
+  double result = NAN;
+  if (operator_ == '+')
+    result = num_a + num_b;
+  else if (operator_ == '-')
+    result = num_a - num_b;
+  else if (operator_ == '*')
+    result = num_a * num_b;
+  else if (operator_ == '/')
+    result = num_a / num_b;
   else {
     std::cout << "Invalid operator.";
     return 1;
   }
 
-  std::cout << a << " " << op << " " << b << " = " << result;
+  std::cout << num_a << " " << operator_ << " " << num_b << " = " << result;
   return 0;
 }
+}  // namespace

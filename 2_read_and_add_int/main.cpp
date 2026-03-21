@@ -1,8 +1,8 @@
 #include "io.h"
 
-int main() {
-  int a{readNumber()};
-  int b{readNumber()};
+auto main() -> int {
+  int const a{readNumber()};  // NOLINT(readability-identifier-length)
+  int const b{readNumber()};  // NOLINT(readability-identifier-length)
   writeAnswer(a + b);
   return 0;
 }

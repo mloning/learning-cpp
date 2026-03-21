@@ -1,24 +1,30 @@
 #include <iostream>
 
-int read_int() {
+// use of anonymous namespace to limit the scope of the functions to this file;
+// similar to prefixing the functions with 'static'
+namespace {
+
+auto read_int() -> int {
   std::cout << "Enter an integer: ";
-  int x{};
-  std::cin >> x;
-  return x;
+  int num{};
+  std::cin >> num;
+  return num;
 }
 
 // the constexpr allows the funtion to be evaluated at compile time if called
 // with a constant expression, even though in this example it's evaluated at
 // runtime as the integer input is not known at compile time
-bool constexpr compute_is_even(int x) { return (x % 2 == 0); }
+auto constexpr compute_is_even(int num) -> bool { return (num % 2 == 0); }
 
-int main() {
-  int x = {read_int()};
-  bool is_even = {compute_is_even(x)};
+}  // namespace
+
+auto main() -> int {
+  int const num = {read_int()};
+  bool const is_even = {compute_is_even(num)};
   if (is_even) {
-    std::cout << "Got integer: " << x << ", which is even";
+    std::cout << "Got integer: " << num << ", which is even";
   } else {
-    std::cout << "Got integer: " << x << ", which is not even";
+    std::cout << "Got integer: " << num << ", which is not even";
   }
   return 0;
 }

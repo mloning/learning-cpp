@@ -10,4 +10,3 @@ g++ -v -std=c++17 -pedantic-errors -Wall -Weffc++ -Wextra -Wconversion -Wsign-co
 
 # run
 ./build/main
-
