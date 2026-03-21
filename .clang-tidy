@@ -1,0 +1,20 @@
+# Enable almost everything, then subtract specific noisy checks
+Checks: >
+  -*,
+  bugprone-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  portability-*,
+  misc-*,
+  -cppcoreguidelines-owning-memory,      # Noisy if not using gsl::owner
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-pro-type-vararg,
+  -readability-braces-around-statements, # Sometimes conflicts with formatters
+  -modernize-use-trailing-return-type    # Subjective style preference
+
+# Turn warnings into build failures
+WarningsAsErrors: "*"
