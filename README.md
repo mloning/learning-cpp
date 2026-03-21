@@ -8,7 +8,7 @@ Code for the [learncpp] tutorial series.
 
 ```bash
 brew install llvm pre-commit
-pre-commit install
 ln -s "$(brew --prefix)/opt/llvm/bin/clang-format" "/usr/local/bin/clang-format"
 ln -s "$(brew --prefix)/opt/llvm/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+pre-commit install --install-hooks
 ```
