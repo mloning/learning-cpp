@@ -1,6 +1,7 @@
 #include <sys/types.h>
 
 #include <cassert>
+#include <cstdio>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
@@ -9,8 +10,9 @@
 
 namespace {
 
-const uint min_num{1};
-const uint max_num{100};
+constexpr uint n_tries{7};
+constexpr uint min_num{1};
+constexpr uint max_num{100};
 
 auto read_guess() -> uint {
   uint guess{};
@@ -32,6 +34,10 @@ auto read_guess() -> uint {
       // TODO overflows are also handled under this case; it would be better to
       // handle them with the same message to enter a number between 1 and 100
       std::cout << "Invalid input; please enter a number: ";
+    } else if (std::cin.peek() != '\n' && std::cin.peek() != EOF) {
+      // trailing non-whitespace characters after the number (e.g. "3asdf")
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      std::cout << "Invalid input; please enter a number: ";
     } else if (guess < min_num || guess > max_num) {
       // check number is within limits
       std::cout << "Invalid number; please enter a number between " << min_num
@@ -46,8 +52,6 @@ auto read_guess() -> uint {
 }  // namespace
 
 auto main() -> int {
-  const uint n_tries{7};
-
   const uint secret_num{Random::get<uint>(min_num, max_num)};
 
   std::cout << "Let's play a game: I'm thinking of a number between " << min_num
