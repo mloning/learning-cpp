@@ -1,6 +1,7 @@
 # Learning C++
 
-Code for the [learncpp] tutorial series.
+Code for the [Learn C++] tutorials.
+For more resources, see my blog post on [Learning C++](https://www.mloning.com/posts/learning-cpp/).
 
 [learncpp]: https://www.learncpp.com/
 
