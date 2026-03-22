@@ -9,8 +9,8 @@ rm -r build || true
 mkdir build/
 clang++ \
   -std=c++17 \
-  -I/usr/local/include \
-  -L/usr/local/lib \
+  -I/opt/homebrew/include \
+  -L/opt/homebrew/lib \
   -lfmt \
   -Wall \
   -Wcast-align \
